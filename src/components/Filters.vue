@@ -13,6 +13,10 @@
                              placeholder="Enter a fruit name"></autocomplete-dropdown>
     </div>
 
+    <div class="filter">
+      <date-range-picker></date-range-picker>
+    </div>
+
     <div class="result">
       Selected: <strong>{{ selectedFruit}}</strong>
     </div>
@@ -22,14 +26,17 @@
 <script>
 import Dropdown from '@/components/Dropdown'
 import AutocompleteDropdown from '@/components/AutocompleteDropdown'
+import DateRangePicker from '@/components/DateRangePicker'
 
 export default {
   components: {
     'dropdown': Dropdown,
-    'autocomplete-dropdown': AutocompleteDropdown
+    'autocomplete-dropdown': AutocompleteDropdown,
+    'date-range-picker': DateRangePicker
   },
   data() {
     return {
+      selectedDateRange: null,
       selectedFruit: '',
       fruitOptions: {
         'Apple': 'Apple',
