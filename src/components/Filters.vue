@@ -1,5 +1,5 @@
 <template>
-  <div class="filter">
+  <div class="filters">
     <div class="filter">
       <label for="component-dropdown">Component-based dropdown: </label>
       <dropdown id="component-dropdown" :options="fruitOptions" v-model="selectedFruit"></dropdown>
@@ -14,16 +14,22 @@
     </div>
 
     <div class="filter">
-      <date-range-picker></date-range-picker>
+      <date-range-picker v-model="selectedDateRange"></date-range-picker>
     </div>
 
     <div class="result">
-      Selected: <strong>{{ selectedFruit}}</strong>
+      Selected: <strong>{{ selectedFruit }}</strong>
+    </div>
+
+    <div class="result">
+      Selected range: <strong v-if="selectedDateRange">{{ selectedDateRangeFormatted }}</strong>
     </div>
   </div>
 </template>
 
 <script>
+import moment from 'moment'
+
 import Dropdown from '@/components/Dropdown'
 import AutocompleteDropdown from '@/components/AutocompleteDropdown'
 import DateRangePicker from '@/components/DateRangePicker'
@@ -48,6 +54,15 @@ export default {
         'Watermelon': 'Watermelon'
       }
     }
+  },
+  computed: {
+    selectedDateRangeFormatted(){
+      if(this.selectedDateRange){
+        return moment(this.selectedDateRange.from).format('L LT') + '-' + moment(this.selectedDateRange.to).format('L LT')
+      }else{
+        return 'None'
+      }
+    }
   }
 }
 </script>
@@ -60,6 +75,7 @@ export default {
 
 .filter {
   text-align: left;
+  padding-top: 30px
 }
 
 .result {
