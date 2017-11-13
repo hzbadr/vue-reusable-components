@@ -106,7 +106,11 @@ export default {
 </script>
 
 <style scoped>
-.date-range-picker{
+.date-range-picker {
   padding: 5px;
+}
+
+select {
+  margin-bottom: 15px;
 }
 </style>
